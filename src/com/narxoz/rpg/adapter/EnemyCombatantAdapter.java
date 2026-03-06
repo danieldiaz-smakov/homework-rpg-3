@@ -12,22 +12,21 @@ public class EnemyCombatantAdapter implements Combatant {
 
     @Override
     public String getName() {
-        return enemy.getTitle();
+        return enemy.getName();
     }
 
     @Override
     public int getAttackPower() {
-        // TODO: translate enemy damage to combat attack
         return enemy.getDamage();
     }
 
     @Override
     public void takeDamage(int amount) {
-        enemy.applyDamage(amount);
+        enemy.setHealth(Math.max(0, enemy.getHealth() - amount));
     }
 
     @Override
     public boolean isAlive() {
-        return !enemy.isDefeated();
+        return enemy.getHealth() > 0;
     }
 }
